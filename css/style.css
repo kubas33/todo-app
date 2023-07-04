@@ -42,7 +42,8 @@ body {
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-  text-decoration-skip-ink: auto;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
@@ -118,7 +119,8 @@ body {
   gap: 1em;
 }
 .todo-list .form-control input[type=checkbox] {
-  appearance: none;
+  -moz-appearance: none;
+       appearance: none;
   -webkit-appearance: none;
   border: 1px solid hsl(234, 11%, 52%);
   border-radius: 50%;
@@ -138,6 +140,4 @@ body {
   gap: 1.5rem;
   padding: 0;
   margin: 0;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
