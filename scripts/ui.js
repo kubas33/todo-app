@@ -17,31 +17,32 @@ const createTaskElement = (task) => {
 	const li = document.createElement('li');
 	const label = document.createElement('label');
 	const checkbox = document.createElement('input');
-	const span = document.createElement('span');
+	//const span = document.createElement('span');
 	const removeBtn = document.createElement('button');
 	const taskText = document.createTextNode(task.text);
 	console.log(task);
 	
 	label.classList.add('form-control');
 	label.dataset.id = task.id;
+
 	checkbox.type = 'checkbox';
 	checkbox.name = 'checkbox'
 	checkbox.checked = task.completed;
-	checkbox.addEventListener('change', () => {
-		
-	})
+	checkbox.addEventListener('change', toggleCompleted);
+
 	removeBtn.innerHTML = '<img src="../images/icon-cross.svg" alt="cross" />';
 	removeBtn.type = 'button';
 	removeBtn.dataset.id = task.id;
 	removeBtn.addEventListener("click", removeTask);
 	li.dataset.completed = task.completed;
-	li.addEventListener("click", toggleCompleted);
+	//li.addEventListener("click", toggleCompleted);
 
 	li.appendChild(label);
 	li.appendChild(removeBtn);
 	label.appendChild(checkbox);
-	label.appendChild(span);
-	span.appendChild(taskText);
+	label.appendChild(taskText);
+	//label.appendChild(span);
+	//span.appendChild(taskText);
 	toDoListHTMLElement.appendChild(li);
 	toDoListHTMLElement.appendChild(document.createElement("hr"));
 	updateTasksLeft();
@@ -85,8 +86,12 @@ const createTasksList = () => {
 }
 
 function toggleCompleted(event) {
-	const id = event.target.parentElement.dataset.id;
-	console.log(event.target.parentElement);
+	const parentElement = event.target.parentElement;
+	const id = parentElement.dataset.id;
+	event.stopPropagation();
+	parentElement.classList.toggle('completed');
+	console.log('target: ', event.target);
+	console.log('parentElement: ', event.target.parentElement);
 	tasksList.toggleCompleted(id);
 }
 

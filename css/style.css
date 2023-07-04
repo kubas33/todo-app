@@ -42,8 +42,7 @@ body {
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-  -webkit-text-decoration-skip: ink;
-          text-decoration-skip-ink: auto;
+  text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
@@ -77,7 +76,7 @@ select {
 }
 body {
   font-size: 1.125rem;
-  font: "Josefin Sans", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   display: grid;
   grid-auto-columns: auto;
   place-content: center;
@@ -113,17 +112,44 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.todo-list .completed {
+  text-decoration: line-through;
+}
 .todo-list .form-control {
   display: grid;
-  grid-template-columns: 1em auto;
+  grid-template-columns: 1em 1fr;
   gap: 1em;
+  width: 100%;
+}
+.todo-list .form-control span {
+  display: block;
+  min-width: 100%;
+  pointer-events: none;
 }
 .todo-list .form-control input[type=checkbox] {
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
   -webkit-appearance: none;
   border: 1px solid hsl(234, 11%, 52%);
   border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  pointer-events: none;
+  display: grid;
+  place-content: center;
+}
+.todo-list .form-control input[type=checkbox]::before {
+  content: "";
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  display: grid;
+  place-content: center;
+}
+.todo-list .form-control input[type=checkbox]:checked::before {
+  content: url("../images/icon-check.svg");
+  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   width: 1.2em;
   height: 1.2em;
 }
@@ -140,4 +166,6 @@ body {
   gap: 1.5rem;
   padding: 0;
   margin: 0;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
