@@ -17,7 +17,7 @@ const createTaskElement = (task) => {
 	const li = document.createElement('li');
 	const label = document.createElement('label');
 	const checkbox = document.createElement('input');
-	//const span = document.createElement('span');
+	const span = document.createElement('span');
 	const removeBtn = document.createElement('button');
 	const taskText = document.createTextNode(task.text);
 	console.log(task);
@@ -34,15 +34,17 @@ const createTaskElement = (task) => {
 	removeBtn.type = 'button';
 	removeBtn.dataset.id = task.id;
 	removeBtn.addEventListener("click", removeTask);
+	removeBtn.classList.add('remove-btn');
 	li.dataset.completed = task.completed;
+	checkIfCompleted(li);
 	//li.addEventListener("click", toggleCompleted);
 
 	li.appendChild(label);
 	li.appendChild(removeBtn);
 	label.appendChild(checkbox);
 	label.appendChild(taskText);
-	//label.appendChild(span);
-	//span.appendChild(taskText);
+	label.appendChild(span);
+	span.appendChild(taskText);
 	toDoListHTMLElement.appendChild(li);
 	toDoListHTMLElement.appendChild(document.createElement("hr"));
 	updateTasksLeft();
@@ -86,14 +88,24 @@ const createTasksList = () => {
 }
 
 function toggleCompleted(event) {
-	const parentElement = event.target.parentElement;
-	const id = parentElement.dataset.id;
+	const parent = event.target.parentElement;
+	const grandParent = parent.parentElement;
+	const id = parent.dataset.id;
 	event.stopPropagation();
-	parentElement.classList.toggle('completed');
+	grandParent.classList.toggle('completed');
 	console.log('target: ', event.target);
 	console.log('parentElement: ', event.target.parentElement);
 	tasksList.toggleCompleted(id);
 }
+
+const checkIfCompleted = (task) => {
+	if (task.dataset.completed === "true") { // !!!  data-completed = 'true' !== data-completed = true !!!
+ 		task.classList.add('completed');
+	} 
+	 else {
+		task.classList.remove('completed');
+	}
+};
 
 toDoForm.addEventListener('submit', (e) => {
 	e.preventDefault();

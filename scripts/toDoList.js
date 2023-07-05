@@ -16,6 +16,7 @@ class ToDoList {
 
 	toggleCompleted(id) {
 		const index = this.findIndexOfTask(id);
+		console.log("entering toggleCompleted with " + id);
 		if (index !== -1) {
 			this.tasks[index].completed = !this.tasks[index].completed;
 			this.saveToLocalStorage();

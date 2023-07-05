@@ -25,7 +25,7 @@
     <div class="tasks-wrapper">
       <form action="" id="todo-form">
         <label for="todo-input"></label>
-        <input type="text" id="todo-input" placeholder="Create a new todo..." required>
+        <input type="text" id="todo-input" class="todo-input" placeholder="Create a new todo..." required>
       </form>
       <div class="tasks-container">
         <ul id="todo-list" class="todo-list" role="list">
@@ -38,9 +38,9 @@
 
       <div class="filter">
         <ul role="list">
-          <li>All</li>
-          <li>Active</li>
-          <li>Completed</li>
+          <li><label for="active"><input type="radio" id="active" >Active</button></label></li>
+          <li><label for="completed"><input type="radio" id="completed" >Completed</button></label></li>
+          <li><label for="active"><input type="radio" id="all" class="active" >All</button></label></li>
         </ul>
       </div>
     </div>
