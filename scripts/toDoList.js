@@ -14,9 +14,14 @@ class ToDoList {
 		return task;
 	};
 
+	updateTasks() {
+		const data = this.loadFromLocalStorage();
+		this.tasks = data.tasks;
+		return this.tasks;
+	}
+
 	toggleCompleted(id) {
 		const index = this.findIndexOfTask(id);
-		console.log("entering toggleCompleted with " + id);
 		if (index !== -1) {
 			this.tasks[index].completed = !this.tasks[index].completed;
 			this.saveToLocalStorage();
@@ -37,6 +42,11 @@ class ToDoList {
 		} else {
 			console.log("Brak zadania o takim id");
 		}
+	}
+
+	removeCompleted() {
+		this.tasks = this.tasks.filter(task => !task.completed);
+		this.saveToLocalStorage();
 	}
 
 

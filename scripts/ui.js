@@ -2,9 +2,16 @@ const toDoForm = document.querySelector('#todo-form');
 const toDoInput = document.querySelector('#todo-input');
 const tasksLeft = document.querySelector('#tasks-left');
 const toDoListHTMLElement = document.querySelector('#todo-list');
-
-
+const filters = document.querySelectorAll("[type='radio']");
+const clearCompletedBtn = document.querySelector("#clear-completed")
 const tasksList = new ToDoList();
+
+clearCompletedBtn.addEventListener("click", () => {
+	tasksList.removeCompleted();
+	createTasksList();
+
+});
+
 
 const createNewTask = (text) => {
 	const task = tasksList.addTask(text);
@@ -93,13 +100,15 @@ function toggleCompleted(event) {
 	const id = parent.dataset.id;
 	event.stopPropagation();
 	grandParent.classList.toggle('completed');
-	console.log('target: ', event.target);
-	console.log('parentElement: ', event.target.parentElement);
+	// console.log('target: ', event.target);
+	// console.log('parentElement: ', event.target.parentElement);
+	// console.log(tasksList);
 	tasksList.toggleCompleted(id);
+	createTasksList();
 }
 
 const checkIfCompleted = (task) => {
-	if (task.dataset.completed === "true") { // !!!  data-completed = 'true' !== data-completed = true !!!
+	if (task.dataset.completed === "true") { // !!!  data-completed === 'true' !== data-completed === true !!!
  		task.classList.add('completed');
 	} 
 	 else {
@@ -114,4 +123,58 @@ toDoForm.addEventListener('submit', (e) => {
 	toDoInput.value = '';
 })
 
+const hideCompleted = task => {
+	if (task.dataset.completed === "true") { // !!!  data-completed === 'true' !== data-completed === true !!!
+		task.classList.add('hidden');
+ } 
+	else {
+	 task.classList.remove('hidden');
+ }
+}
+
+
+const hideActive = task => {
+	if (task.dataset.completed === "false") { // !!!  data-completed === 'true' !== data-completed === true !!!
+		task.classList.add('hidden');
+ } 
+	else {
+	 task.classList.remove('hidden');
+ }
+}
+
+const showAll = task => {
+	task.classList.remove('hidden');
+}
+
+const checkFilters = (event) => {
+	
+	let activeFilter;
+	
+	filters.forEach(filter => {
+		if (filter.checked) {
+			activeFilter = filter.id;
+		}
+	})
+
+	const tasksElements = toDoListHTMLElement.querySelectorAll('li');
+	console.log(tasksElements);
+
+	switch (activeFilter) {
+		case 'all':
+			tasksElements.forEach(task => showAll(task));
+			break;
+		case 'active':
+			tasksElements.forEach(task => hideCompleted(task));
+			break;
+		case 'completed':
+			tasksElements.forEach(task => hideActive(task));
+			break;
+	}
+
+}
+
+filters.forEach(filter => 
+	filter.addEventListener('change', checkFilters));
+
 createTasksList();
+checkFilters();

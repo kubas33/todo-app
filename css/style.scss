@@ -26,6 +26,14 @@ $font-bold: 700;
 
 @import "css-reset";
 
+.hidden, .hidden + hr {
+  display: none!important;
+}
+
+.transparent {
+  background: transparent;
+  border: transparent;
+}
 
 body {
   font-size: $font-size;
@@ -35,16 +43,31 @@ body {
   place-content: center;
 }
 
+.site-wrapper {
+  width: 100vw;
+  max-width: 90rem;
+  background-color: $dTheme-very-dark-blue;
+  display: grid;
+  place-content: center;
+}
+
 h1 {
   text-transform: uppercase;
   color: $lTheme-very-light-gray;
 }
 
 main {
- width: 100vw;
- max-width: 90rem;
- background-color: $dTheme-very-dark-blue;
- padding: 4rem 1.5rem;
+  max-width: 38rem;
+  padding: 4rem 1.5rem;
+  width:100vw;
+}
+
+.drag {
+  color: $dTheme-dark-grayish-blue;
+  font-size: .85rem;
+  display: grid;
+  place-content: center;
+  margin-top: 2rem;
 }
 
 .todo-input {
@@ -53,21 +76,12 @@ main {
   color: $dTheme-light-grayish-blue;
 }
 
-form::before {
-  content: "";
-  border: 1px solid $dTheme-dark-grayish-blue;
-  vertical-align: middle;
-  border-radius: 50%;
-  min-width: .8em;
-  min-height: .8em;
-  display: inline-block;
-}
-
 .todo-input::placeholder {
   font-size: .85rem;
   font-weight: $font-normal;
   color: $dTheme-dark-grayish-blue;
 }
+
 
 .tasks-wrapper {
   display: grid;
@@ -75,20 +89,27 @@ form::before {
   grid-auto-rows: auto;
   color: $dTheme-light-grayish-blue;
   gap: 1rem;
-
+  
+  form::before {
+    content: "";
+    border: 1px solid $dTheme-dark-grayish-blue;
+    vertical-align: middle;
+    border-radius: 50%;
+    min-width: .8em;
+    min-height: .8em;
+    display: inline-block;
+  }
   form {
     padding: .5rem 1rem;
     width: 100%;
     input {
-      background-color: transparent;
-      border: transparent;
+      @extend .transparent;
     }
   }
 }
 
 .remove-btn {
-  background-color: transparent;
-  border: transparent;
+  @extend .transparent;
 }
 
 .tasks-wrapper > * {
@@ -129,7 +150,6 @@ form::before {
     vertical-align: middle;
     span {
       display: inline-flex;
-      //display: table-cell;
       vertical-align: text-bottom;
       min-width: 100%;
       pointer-events: none;
@@ -179,6 +199,14 @@ form::before {
   font-size: .8rem;
   font-weight: $font-normal;
   color: $dTheme-dark-grayish-blue;
+
+  .clear-completed {
+    @extend .transparent;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+  }
 }
 
 .filter {
@@ -199,10 +227,21 @@ form::before {
   }
 
 }
-input[type="radio"] {
+
+.filter-control {
   font-size: .85rem;
   font-weight: $font-bold;
-  background: transparent;
   color: $dTheme-dark-grayish-blue;
-  border: none;
 }
+
+input[type="radio"] {
+  @extend .transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type="radio"]:checked ~ .filter-control {
+  color: $prim-blue;
+}
+

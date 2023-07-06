@@ -75,11 +75,28 @@ select {
     scroll-behavior: auto !important;
   }
 }
+.hidden, .hidden + hr {
+  display: none !important;
+}
+
+.transparent, input[type=radio], .list-bottom .clear-completed, .remove-btn, .tasks-wrapper form input {
+  background: transparent;
+  border: transparent;
+}
+
 body {
   font-size: 1.125rem;
   font-family: "Josefin Sans", sans-serif;
   display: grid;
   grid-auto-columns: auto;
+  place-content: center;
+}
+
+.site-wrapper {
+  width: 100vw;
+  max-width: 90rem;
+  background-color: hsl(235, 21%, 11%);
+  display: grid;
   place-content: center;
 }
 
@@ -89,26 +106,23 @@ h1 {
 }
 
 main {
-  width: 100vw;
-  max-width: 90rem;
-  background-color: hsl(235, 21%, 11%);
+  max-width: 38rem;
   padding: 4rem 1.5rem;
+  width: 100vw;
+}
+
+.drag {
+  color: hsl(234, 11%, 52%);
+  font-size: 0.85rem;
+  display: grid;
+  place-content: center;
+  margin-top: 2rem;
 }
 
 .todo-input {
   font-size: 0.85rem;
   font-weight: 400;
   color: hsl(234, 39%, 85%);
-}
-
-form::before {
-  content: "";
-  border: 1px solid hsl(234, 11%, 52%);
-  vertical-align: middle;
-  border-radius: 50%;
-  min-width: 0.8em;
-  min-height: 0.8em;
-  display: inline-block;
 }
 
 .todo-input::-moz-placeholder {
@@ -130,20 +144,19 @@ form::before {
   color: hsl(234, 39%, 85%);
   gap: 1rem;
 }
+.tasks-wrapper form::before {
+  content: "";
+  border: 1px solid hsl(234, 11%, 52%);
+  vertical-align: middle;
+  border-radius: 50%;
+  min-width: 0.8em;
+  min-height: 0.8em;
+  display: inline-block;
+}
 .tasks-wrapper form {
   padding: 0.5rem 1rem;
   width: 100%;
 }
-.tasks-wrapper form input {
-  background-color: transparent;
-  border: transparent;
-}
-
-.remove-btn {
-  background-color: transparent;
-  border: transparent;
-}
-
 .tasks-wrapper > * {
   background-color: hsl(237, 14%, 26%);
   border-radius: 0.5rem;
@@ -227,6 +240,12 @@ form::before {
   font-weight: 400;
   color: hsl(234, 11%, 52%);
 }
+.list-bottom .clear-completed {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+}
 
 .filter ul {
   display: flex;
@@ -243,10 +262,19 @@ form::before {
   color: hsl(220, 98%, 61%);
 }
 
-input[type=radio] {
+.filter-control {
   font-size: 0.85rem;
   font-weight: 700;
-  background: transparent;
   color: hsl(234, 11%, 52%);
-  border: none;
+}
+
+input[type=radio] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  margin: 0;
+}
+
+input[type=radio]:checked ~ .filter-control {
+  color: hsl(220, 98%, 61%);
 }/*# sourceMappingURL=style.css.map */

@@ -19,41 +19,49 @@
   </style>
 </head>
 <body>
-<div class="site-wrapper">
-  <main>
-    <h1>Todo</h1>
-    <div class="tasks-wrapper">
-      <form action="" id="todo-form">
-        <label for="todo-input"></label>
-        <input type="text" id="todo-input" class="todo-input" placeholder="Create a new todo..." required>
-      </form>
-      <div class="tasks-container">
-        <ul id="todo-list" class="todo-list" role="list">
-        </ul>
-        <div class="list-bottom">
-          <div><span id="tasks-left"></span> items left</div>
-          <div>Clear Completed</div>
+  <div class="site-wrapper">
+    <main>
+      <h1>Todo</h1>
+      <div class="tasks-wrapper">
+        <form action="" id="todo-form">
+          <label for="todo-input"></label>
+          <input type="text" id="todo-input" class="todo-input" placeholder="Create a new todo..." required>
+        </form>
+        <div class="tasks-container">
+          <ul id="todo-list" class="todo-list" role="list">
+          </ul>
+          <div class="list-bottom">
+            <div><span id="tasks-left"></span> items left</div>
+            <button id="clear-completed" class="clear-completed" type="button">Clear Completed
+          </div>
+        </div>
+        <div class="filter">
+          <ul role="list">
+            <li>
+              <input type="radio" id="all" class="active" name="filter" checked>
+              <label class="filter-control" for="all">All</label>
+            </li>
+            <li>
+              <input type="radio" id="active" name="filter">
+              <label class="filter-control" for="active">Active</label>
+            </li>
+            <li>
+              <input type="radio" id="completed" name="filter">
+              <label class="filter-control" for="completed">Completed</label>
+            </li>
+          </ul>
         </div>
       </div>
-
-      <div class="filter">
-        <ul role="list">
-          <li><label for="active"><input type="radio" id="active" >Active</button></label></li>
-          <li><label for="completed"><input type="radio" id="completed" >Completed</button></label></li>
-          <li><label for="active"><input type="radio" id="all" class="active" >All</button></label></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="drag">Drag and drop to reorder list</p>
+      <div class="drag"><span>Drag and drop to reorder list</span></div>
+  </div>
   </main>
   <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="#">pow4h</a>.
   </footer>
-</div>
-<script src="scripts/toDoTask.js"></script>
-<script src="scripts/toDoList.js"></script>
-<script src="scripts/ui.js"></script>
+  </div>
+  <script src="scripts/toDoTask.js"></script>
+  <script src="scripts/toDoList.js"></script>
+  <script src="scripts/ui.js"></script>
 </body>
 </html>
