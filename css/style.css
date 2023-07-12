@@ -79,11 +79,6 @@ select {
   display: none !important;
 }
 
-.transparent, input[type=radio], .list-bottom .clear-completed, .remove-btn, .tasks-wrapper form input {
-  background: transparent;
-  border: transparent;
-}
-
 body {
   font-size: 1.125rem;
   font-family: "Josefin Sans", sans-serif;
@@ -157,6 +152,16 @@ main {
   padding: 0.5rem 1rem;
   width: 100%;
 }
+.tasks-wrapper form input {
+  background: transparent;
+  border: transparent;
+}
+
+.remove-btn {
+  background: transparent;
+  border: transparent;
+}
+
 .tasks-wrapper > * {
   background-color: hsl(237, 14%, 26%);
   border-radius: 0.5rem;
@@ -241,6 +246,8 @@ main {
   color: hsl(234, 11%, 52%);
 }
 .list-bottom .clear-completed {
+  background: transparent;
+  border: transparent;
   color: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -269,6 +276,8 @@ main {
 }
 
 input[type=radio] {
+  background: transparent;
+  border: transparent;
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
